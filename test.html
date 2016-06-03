@@ -1,0 +1,159 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="bootstrap/bootstrap.min.js"></script>
+	<script src="js/test.js"></script>
+	<script src="js/credentials.js"></script>
+	<script src="js/dashboard.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/test.css">
+	<link rel="stylesheet" type="text/css" href="css/credentials.css">
+	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
+</head>	
+<body>
+	<nav class="navbar navbar-default">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a data-toggle="tab" href="#Dashboard" id="navigateToDashboard">Dashboard</a></li>
+	        <li><a data-toggle="tab" href="#Settings" id="navigateToSettings">Settings</a></li>
+	       </ul>
+	    </div>   
+	</nav>
+	<div class="tab-content">
+		<div id="Dashboard" class="tab-pane fade in active">
+			<div class="jira-block">
+				<div class="jira-list-container">
+					<div class="jira-list-header">
+						<h3>Jira lists:</h3>
+					</div>
+					<div class="list-container">
+					</div>
+				</div>
+			</div>	
+		</div>
+
+		<div id="Settings" class="tab-pane fade">
+			<div class='jira-block'>
+				<div class="jira-credentials-container">
+					<div class='jira-credentials-header'>
+						<h3>Credentials:</h3>
+					</div>	
+					<div class="credentials-container">
+						<div class='credentials-settings-header'>
+							<span id='jira-credentials-cancel' class="glyphicon glyphicon-remove showtooltip"><span class="tooltiptext">Cancel</span></span>
+							<span id='jira-credentials-edit' class="glyphicon glyphicon-cog showtooltip"><span class="tooltiptext">Edit</span></span>
+						</div>	
+						<div id='jira-settings-edit' class="jira-credentials-edit">
+							<div class="input-group">
+								<label for='jira-host'>Host:</label>
+								<input id='jira-host' type='text' placeholder='Enter Host'>
+							</div>
+							<div class="input-group">
+								<label for='jira-username'>Username:</label>
+								<input id='jira-username' type='text' placeholder='Enter Username'>
+							</div>
+							<div class="input-group">
+								<label for='jira-password'>Password:</label>
+								<input id='jira-password' type='password' placeholder='Enter Password'>
+							</div>
+							<div id="status"></div>
+							<button type='submit' class="submit-jira-credentials" id='submit-jira-credentials'>Save</button>
+						</div>
+					</div>			
+				</div>	
+				<div class='jira-filter-container'>
+					<div class='jira-filter-header'> 
+						<h3>Filters:</h3>
+					</div>	
+					<div class="filter-container">
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>	
+
+
+
+	<div class="filter-template">
+			<div class="filter-edit">
+				<div class="filter-header">
+					<div class="header-settings">
+						<span class="glyphicon glyphicon-pencil edit-filter-icon showtooltip"><span class='tooltiptext'>Edit</span></span>
+						<span class="glyphicon glyphicon-trash remove-filter showtooltip"><span class='tooltiptext'>Remove</span></span>
+						<span class="glyphicon glyphicon-remove cancel-edit showtooltip"><span class='tooltiptext'>Cancel</span></span>
+					</div>	
+					<input placeholder="Filter name">
+				</div>
+				<div class="filter-params">	
+					<div class="filter-head-text">Search params:</div>
+					<div class="input-group">
+						<input placeholder="key" name="key">
+						<input placeholder="value" name="value">
+						<button class="remove-param">x</button>
+					</div>
+					<div class="input-group">
+						<input placeholder="key" name="key">
+						<input placeholder="value" name="value">
+						<button class="remove-param">x</button>
+					</div>
+					<button class="add-param">+</button>	
+				</div>
+				<div class="filter-extra-params">
+					<div class="filter-head-text">Extra params:</div>
+					<div class="input-group">
+						<label class="exta-param-label">orderBy</label>
+						<input placeholder="field">
+						<span class="select-wrapper">
+							<select class="no-radius">
+								<option value="DESC">DESC</option>
+								<option value="ASC">ASC</option>
+							</select>
+						</span>
+					</div>
+					<div class="input-group filter-max-results">	
+						<label class="exta-param-label">maxResults</label>
+						<input type="number" value="5">
+					</div>	
+				</div>
+				<div class="filter-search-query">
+					<label>Search Query</label>
+					<div class="search-query-text"></div>
+				</div>	
+				<div class="filter-footer">
+					<button class="save-filter">Save</button>
+				</div>
+			</div>	
+	</div>	
+
+	<div class="list-template">
+		<div class='list-header' data-toggle="collapse">
+		</div>
+		<hr/>
+		<div class="pannel-collapse collapse in">
+			<div class="list-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Key</th>
+							<th>Status</th>
+							<th>Summary</th>
+						</tr>	
+					</thead>
+					<tbody>	
+						<tr>
+							<td name="key"></td>
+							<td name="status"></td>
+							<td name="summary"></td>
+						</tr>	
+					</tbody>	
+				</table>
+			</div>
+			<div class="panel-footer">
+				<div class="panel-footer-text">Search params:</div>
+				<ul>
+				</ul>	
+			</div>	
+		</div>	
+	</div>	
+</body>	
+</html>

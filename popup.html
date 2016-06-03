@@ -1,0 +1,66 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css">
+  <script src="js/jquery-2.2.3.min.js"></script>
+  <script src="bootstrap/bootstrap.min.js"></script>
+  <script src="js/popup.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/popup.css">
+</head>	
+<body>
+  <div class="popup-header">
+    <div class="jira-status inline">Jira:</div>  
+    <div class="jira-status-indicator inline"></div>
+    <div class="open-settings-page inline showtooltip"><span class="glyphicon glyphicon-cog" id="open-settings-page"></span><span class="tooltiptext">Configure</span></div>
+  </div>  
+  
+  <div class='jira-filter-container' id='main-container'>
+    <div class="filter-container">
+    </div> 
+  </div>
+  <div id="sign-in-block" class="sign-in-block">
+    <div class="credentials">
+      <div class="input-group">
+        <label for='username'>Username:</label>
+        <input type="text" id='username' placeholder="Username">
+      </div>
+      <div class="input-group">
+        <label for='password'>Password:</label>
+        <input type="password" id='password' placeholder="Password">
+      </div>  
+      <button id="submit-jira-credentials">Sign In</button>
+    </div> 
+
+    <!-- <a href="#" id='sign-in-jira'>Sign in to Jira</a><br> -->
+    <span id="resp"></span>
+  </div>
+
+  <div class="list-template">
+    <div class='list-header' data-toggle="collapse">
+      Filter name: <span class="display-filter-name"></span>  | Issues found: <span class="display-issues-found"></span>
+    </div>
+    <div class="pannel-collapse collapse">
+      <div class="list-body">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Status</th>
+              <th>Summary</th>
+            </tr> 
+          </thead>
+          <tbody> 
+            <tr>
+              <td name="key"></td>
+              <td name="status"></td>
+              <td name="summary"></td>
+            </tr> 
+          </tbody>  
+        </table>
+      </div>  
+    </div>  
+  </div>
+  <div class='popup-footer'>
+      <a href="#" id="sign_out_jira">Sign Out</a>
+  </div>   
+</body> 
+</html>

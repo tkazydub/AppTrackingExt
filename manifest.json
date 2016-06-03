@@ -1,0 +1,14 @@
+{
+  "name": "My First Extension",
+  "description": "Will test some features",
+  "version": "0.1",
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Click here!"
+  },  
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://www.google.com; object-src 'self'",
+  "permissions":[ "tabs","http://*/","https://*/", "storage"],
+  // "options_page": "configuration.html"
+  "options_page": "test.html"
+}

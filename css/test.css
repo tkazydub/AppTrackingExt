@@ -1,0 +1,205 @@
+body {
+	background-color: F7F7F7;
+}
+.jira-block {
+	width: 100%;
+	display: inline-flex;
+}
+
+.jira-filter-container{
+	position: relative;
+	float: right;
+	/*display: inline-block;*/
+	margin-left: 10px;
+	/*min-width: 340px;
+	max-width: 1360px;*/
+	width: calc(100%-420px);
+}
+
+.filter-template {
+	display: none;
+}
+
+.filter-edit {
+	position: relative;
+}
+
+.filter-container {	
+	display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    /*width: 70%;*/
+}
+.create-new-filter {
+	width: 152px;
+	margin-left: 10px;
+	box-shadow: 5px 5px 3px #888888;
+}
+.filter {
+	width: 320px;
+	padding: 10px;
+	/*height: auto;*/
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	box-shadow: 5px 5px 3px #888888;
+	background-color: white;
+	}
+/*Filter edit CSS - Start*/
+.header-settings{
+	float: right;
+}
+.header-settings span {
+	display:inline;
+}
+
+.filter-header{
+	margin-top: 5px;
+}
+.filter-header input {
+	border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 300px;
+    text-align: center;
+    font-size: 15;
+    margin-top: 5px;
+}
+
+::-webkit-input-placeholder  {
+	text-align: center;
+}
+
+.filter-params {
+	margin-top: 10px;
+}
+
+
+.filter-params input{
+	text-align: center;
+	border: 0;
+    outline: 0;
+    width: 140px;
+    background: transparent;
+    border-bottom: 1px solid black;
+    margin-right: 5px;
+}
+button.remove-param{
+	border:0;
+	background: transparent;
+	height: auto;
+	width: 10px;
+	text-align: center;
+	padding: 0px;
+}
+
+button.add-param {
+	float: right;
+	border:0;
+	background: transparent;
+	height: 10px;
+	width: 10px;
+	text-align: center;
+	padding: 0px;
+	font-size: 17px;
+}
+
+.filter-extra-params {
+	margin-top: 20px;
+	width: 300px;
+}
+.filter-extra-params input{
+	text-align: center;
+	border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 150px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+select.no-radius{
+    border:none;
+    width:60px;
+    float: right;
+    background-color: transparent;
+}    
+.select-wrapper{
+    border: 0;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+.filter-max-results input {
+	text-align: center;
+}
+label.exta-param-label{
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+}
+
+.filter-footer {
+	width: 300px;
+}
+button.save-filter {
+	display: block;
+	width: 300px;
+}
+
+.filter-head-text {
+	font-style: italic;
+	text-decoration: underline;
+	margin-bottom: 3px;
+}
+
+.filter-search-query {
+	width: 300px;
+	margin-top: 10px;
+}
+
+.filter-search-query label {
+	display: inline-block;
+	width: 80px;
+	text-align: right;
+	vertical-align: top;
+}
+
+
+div.search-query-text {
+	display: inline-block;
+	width: 215px;
+	overflow-wrap: normal;
+	word-wrap: normal;
+	word-break: break-all;
+	line-break: strict;
+	-webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: black;
+    opacity: 0.7;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -30px;
+    margin-bottom: 7px;
+}
+
+.showtooltip:hover .tooltiptext {
+    visibility: visible;
+}

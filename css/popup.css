@@ -1,0 +1,120 @@
+body {
+	background-color: F7F7F7;
+}
+.sign-in-block {
+	display: none;
+	width: 410px;
+	padding: 5px;
+	margin-bottom: 30px;
+}
+.credentials {
+	width: 235px;
+}
+.credentials label {
+	font-size: 14px;
+	width: 80px;
+	margin-right: 5px;
+	text-align: right;
+}
+.credentials input {
+	border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid black;
+    width: 150px;
+    padding-left: 5px;
+    padding-right: 5px
+}
+.credentials button {
+	margin-top: 10px;
+	float: right;
+}
+
+.popup-header {
+	width: 410px;
+	padding:5px;
+}
+.open-settings-page {
+	float: right;
+}
+.jira-status-indicator {
+    background-color: #E5E4E2;
+    height: 10px;
+    width: 10px;
+    text-align: center;
+    -moz-border-radius:5px;
+    -webkit-border-radius: 5px;
+}    
+.inline {
+    display: inline-block;
+}
+.list-template {
+	display: none;
+}
+.jira-filter-container {
+	width: 410px;
+	padding: 5px;
+}
+.list {
+	background-color: white;
+	width: 400px;
+	margin-bottom: 5px;
+}
+
+.list-header {
+	width: 400px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: normal;
+}
+.display-filter-name {
+	font-size: 15px;
+	font-weight: bold;	
+}
+.display-issues-found {
+	font-size: 15px;
+	font-weight: bold;
+}
+.list-header:hover {
+	background-color: #D6F2F2;
+}
+
+.no-results-text {
+	padding: 5px;
+	text-align: center;
+}
+
+.popup-footer {
+	width: 410px;
+	padding: 5px;
+}
+.popup-footer a {
+	float:right;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    background-color: black;
+    opacity: 0.7;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -30px;
+    margin-bottom: 7px;
+}
+
+.showtooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.list th,tr {
+	font-size: 13px;
+}
