@@ -11,7 +11,7 @@
   						var new_id = parseInt(lastFilter.prop('id').match(/\d+/g)[0],10) +1;
   					}
   					catch(err) {
-  						var new_id = 1
+  						var new_id = 1;
   					}
   					var newFilter = $('.filter-template').clone().attr('id','jira-filter-'+new_id).attr('class','filter');
   					newFilter.find('.header-settings span.edit-filter-icon').hide();
@@ -144,21 +144,6 @@ function removeFilter(list_id){
 function removeFilterFromUI(id){
 	$('#jira-filter-'+id).remove();
 }
-
-// function getListDataFromLocalStoragePromise(){
-// 	return new Promise(function(resolve, reject){
-// 		chrome.storage.sync.get({
-// 			jiraFilter: []
-// 		}, function(list_data){
-// 			if (list_data.jiraFilter){
-// 				resolve(JSON.parse(list_data.jiraFilter));
-// 			}
-// 			else {
-// 				resolve([]);	
-// 			}
-// 		});
-// 	});
-// }
 
 function generateJiraSearchQuery(data){
 	var params = data["params"];

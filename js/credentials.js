@@ -1,22 +1,3 @@
-// (function($) {
-//   		$(document).ready(function(){
-//   			insertCredentialsData();
-//   			$(document)
-//   				.on('click', '#submit-jira-credentials', function(){
-//   					if (checkIfCredentialsEntered()){
-//   						saveJiraCredentials(readJiraCredentials());
-//   					}
-//   				})
-//   				.on('click', '#jira-credentials-edit', function(){
-//   					credentialsBlockEdit();
-//   				})
-//   				.on('click', '#jira-credentials-cancel', function(){
-//   					insertCredentialsData();
-//   				})
-//   		});
-// })(jQuery);
-
-
 function credentialsBlockDisplay(data) {
 	$('#jira-host').val(data['host']),
 	$('#jira-username').val(data['username']),
