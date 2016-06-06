@@ -128,7 +128,6 @@ button.add-param {
 select.no-radius{
     border:none;
     background-color: transparent;
-	-webkit-appearance: none;
 }    
 span.select-wrapper{
     border: 0;
@@ -141,6 +140,7 @@ span.select-wrapper{
 	padding: 0;
 	height: 23px;
 	font-weight: bold;
+	-webkit-appearance: none;
 }
 .sort-order-select {
 	width:60px;
