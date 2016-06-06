@@ -79,7 +79,9 @@ function getFilterData(filter_id) {
 	var filter_name = $('#jira-filter-' + filter_id + ' .filter-header input').val()
 	var params = [];
 	$("#jira-filter-"+ filter_id + " .filter-params .input-group").each(function(){
-		params.push({"key": $(this).find('input[name="key"]').val(), "value": $(this).find('input[name="value"]').val(), "equal": $(this).find('select').val()});
+		var value = $(this).find('input[name="value"]').val();
+		value = (value.indexOf(' ')>-1 && value.indexOf('"')===-1) ? '"' + value + '"': value;
+		params.push({"key": $(this).find('input[name="key"]').val(), "value": value, "equal": $(this).find('select').val()});
 	});
 	var order_by = {
 		"order_field": $("#jira-filter-"+ filter_id + " .filter-extra-params .input-group:first").find('input').val(),
@@ -147,15 +149,52 @@ function removeFilterFromUI(id){
 
 function generateJiraSearchQuery(data){
 	var params = data["params"];
-	var result_query = ""
-	for (var i=0; i<params.length; i++){
-		if (i!=0) { result_query += "+AND+"};
-		result_query += params[i]["key"] + params[i]["equal"] + params[i]["value"];
-	}
+	var result_query = "";
+	result_query += orderQueryParams(params);
 	result_query += "+order+by+" + data["orderBy"]["order_field"] + "+" + data["orderBy"]["sort_order"] + "&maxResults=" + data["maxSize"] + "&fields=key,summary,status";
 	return result_query
 }
 
+function orderQueryParams(data){
+	var result_query = "";
+	var filter_params = [];
+
+		var data_keys = [];
+		for (var i=0; i<data.length; i++){
+			if (data_keys.indexOf(data[i]['key']) === -1) {
+				data_keys.push(data[i]['key']);
+			}
+		}
+		var keys = data_keys;
+	for (var i=0;i<keys.length; i++) {
+		var key = keys[i];
+		var	params = [];
+		for (var j=0;j<data.length; j++) {
+			if (key == data[j]["key"]) {
+				params.push({"eq": data[j]["equal"],"param": data[j]["value"]});
+			}
+		}
+		filter_params.push({'key': key, "params": params});
+	}
+	for (var i=0;i<filter_params.length;i++){
+		if (i>0) {result_query+="+AND+"};
+		if (filter_params[i]['params'].length > 1) {
+			var key_result = "";
+			for (var j = 0; j < filter_params[i]['params'].length; j++) {
+				if (j > 0) {
+					key_result += "+OR+"
+				}
+				;
+				key_result += filter_params[i]['key'] + filter_params[i]['params'][j]['eq'] + filter_params[i]['params'][j]['param'];
+			}
+			result_query += "(" + key_result + ")";
+		}else {
+			result_query +=filter_params[i]['key'] + filter_params[i]['params'][0]['eq'] + filter_params[i]['params'][0]['param'];
+		}
+
+	}
+	return result_query;
+}
 
 function findFilterById(filter_data, id){
 	for(var i = 0; i < filter_data.length; i++)
