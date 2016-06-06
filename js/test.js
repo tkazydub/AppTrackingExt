@@ -79,14 +79,14 @@ function getFilterData(filter_id) {
 	var filter_name = $('#jira-filter-' + filter_id + ' .filter-header input').val()
 	var params = [];
 	$("#jira-filter-"+ filter_id + " .filter-params .input-group").each(function(){
-		params.push({"key": $(this).find('input[name="key"]').val(), "value": $(this).find('input[name="value"]').val()});
+		params.push({"key": $(this).find('input[name="key"]').val(), "value": $(this).find('input[name="value"]').val(), "equal": $(this).find('select').val()});
 	});
 	var order_by = {
 		"order_field": $("#jira-filter-"+ filter_id + " .filter-extra-params .input-group:first").find('input').val(),
 		"sort_order": $("#jira-filter-"+ filter_id + " .filter-extra-params .input-group:first").find('select').val()
 	};
 	var max_size = $("#jira-filter-"+ filter_id + " .filter-extra-params .input-group:last").find('input').val();
-	results_json = {"id": filter_id, "name": filter_name, "params": params, "maxSize": max_size, "orderBy": order_by}
+	var results_json = {"id": filter_id, "name": filter_name, "params": params, "maxSize": max_size, "orderBy": order_by};
 	results_json["search_url"] = generateJiraSearchQuery(results_json);
 	return results_json;
 }		
@@ -150,7 +150,7 @@ function generateJiraSearchQuery(data){
 	var result_query = ""
 	for (var i=0; i<params.length; i++){
 		if (i!=0) { result_query += "+AND+"};
-		result_query += params[i]["key"] + "=" + params[i]["value"];
+		result_query += params[i]["key"] + params[i]["equal"] + params[i]["value"];
 	}
 	result_query += "+order+by+" + data["orderBy"]["order_field"] + "+" + data["orderBy"]["sort_order"] + "&maxResults=" + data["maxSize"] + "&fields=key,summary,status";
 	return result_query
@@ -197,15 +197,16 @@ function createJiraFilters(data){
 			if (j>0){
 				var newParamsField = $('#jira-filter-'+ data[i]['id'] +' .filter-params .input-group:last').clone()
 					.find('input[name="key"]').val("").end()
-					.find('input[name="value"]').val("").end();
+					.find('input[name="value"]').val("").end()
+					.find('select').val("=").end();
 				$('#jira-filter-'+ data[i]['id'] +' .filter-params .input-group:last').after(newParamsField);
 			};
 			$('#jira-filter-'+ data[i]['id'] +' .filter-params .input-group:last input[name="key"]').val(data[i]['params'][j]['key']).end();
 			$('#jira-filter-'+ data[i]['id'] +' .filter-params .input-group:last input[name="value"]').val(data[i]['params'][j]['value']).end();
+			$('#jira-filter-'+ data[i]['id'] +' .filter-params select:last').val(data[i]['params'][j]['equal']).end();
 			$('#jira-filter-'+ data[i]['id'] +' .filter-search-query .search-query-text').text(data[i]['search_url']).end();
 		};
 		makeFilterDisplayView(data[i]['id'], false);
-
 	}
 	insertAddNewFilterButton();
 }

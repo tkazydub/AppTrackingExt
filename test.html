@@ -20,7 +20,7 @@
 	    </div>   
 	</nav>
 	<div class="tab-content">
-		<div id="Dashboard" class="tab-pane fade in active">
+		<div id="Dashboard" class="tab-pane fade">
 			<div class="jira-block">
 				<div class="jira-list-container">
 					<div class="jira-list-header">
@@ -32,7 +32,7 @@
 			</div>	
 		</div>
 
-		<div id="Settings" class="tab-pane fade">
+		<div id="Settings" class="tab-pane fade in active">
 			<div class='jira-block'>
 				<div class="jira-credentials-container">
 					<div class='jira-credentials-header'>
@@ -88,11 +88,23 @@
 					<div class="filter-head-text">Search params:</div>
 					<div class="input-group">
 						<input placeholder="key" name="key">
+						<span class="select-wrapper">
+							<select class="no-radius equality-select">
+								<option value="=">=</option>
+								<option value="!=">!=</option>
+							</select>
+						</span>
 						<input placeholder="value" name="value">
 						<button class="remove-param">x</button>
 					</div>
 					<div class="input-group">
 						<input placeholder="key" name="key">
+						<span class="select-wrapper">
+							<select class="no-radius equality-select">
+								<option value="=">=</option>
+								<option value="!=">!=</option>
+							</select>
+						</span>
 						<input placeholder="value" name="value">
 						<button class="remove-param">x</button>
 					</div>
@@ -104,7 +116,7 @@
 						<label class="exta-param-label">orderBy</label>
 						<input placeholder="field">
 						<span class="select-wrapper">
-							<select class="no-radius">
+							<select class="no-radius sort-order-select">
 								<option value="DESC">DESC</option>
 								<option value="ASC">ASC</option>
 							</select>

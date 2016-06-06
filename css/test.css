@@ -1,5 +1,5 @@
 body {
-	background-color: F7F7F7;
+	background-color: #F7F7F7;
 }
 .jira-block {
 	width: 100%;
@@ -13,7 +13,7 @@ body {
 	margin-left: 10px;
 	/*min-width: 340px;
 	max-width: 1360px;*/
-	width: calc(100%-420px);
+	width: calc(100% - 420px);
 }
 
 .filter-template {
@@ -66,7 +66,7 @@ body {
     border-bottom: 1px solid black;
     width: 300px;
     text-align: center;
-    font-size: 15;
+    font-size: 15px;
     margin-top: 5px;
 }
 
@@ -83,18 +83,19 @@ body {
 	text-align: center;
 	border: 0;
     outline: 0;
-    width: 140px;
+    width: 133px;
     background: transparent;
     border-bottom: 1px solid black;
-    margin-right: 5px;
 }
+
 button.remove-param{
 	border:0;
 	background: transparent;
 	height: auto;
 	width: 10px;
 	text-align: center;
-	padding: 0px;
+	padding: 0;
+	margin-left: 5px;
 }
 
 button.add-param {
@@ -126,14 +127,24 @@ button.add-param {
 
 select.no-radius{
     border:none;
-    width:60px;
-    float: right;
     background-color: transparent;
 }    
-.select-wrapper{
+span.select-wrapper{
     border: 0;
-    border-bottom: 1px solid black;
-    border-radius: 0px;
+    /*border-bottom: 1px solid black;*/
+    border-radius: 0;
+}
+
+.equality-select {
+	width: 10px;
+	padding: 0;
+	height: 23px;
+	font-weight: bold;
+	-webkit-appearance: none;
+}
+.sort-order-select {
+	width:60px;
+	float: right;
 }
 .filter-max-results input {
 	text-align: center;
