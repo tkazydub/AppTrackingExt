@@ -88,7 +88,7 @@ function generateFilter(data) {
 		newList.find('div.collapse .list-body').append('<div class="no-results-text">No issues found</div>');
 	}	
 	for (var i=0; i< data['params'].length; i++){
-			newList.find('.panel-footer ul').append('<li><b>' + data['params'][i]['key']+ '</b>: '+ data['params'][i]['value'] +'</li>')
+			newList.find('.panel-footer ul').append('<li><b>' + data['params'][i]['key']+ '</b> <b>' + data['params'][i]['equal'] + '</b> ' + data['params'][i]['value'] +'</li>')
 		}
 	$('.list-container').append(newList);
 	
