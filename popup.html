@@ -4,34 +4,49 @@
   <script src="js/jquery-2.2.3.min.js"></script>
   <script src="bootstrap/bootstrap.min.js"></script>
   <script src="js/popup.js"></script>
+  <script src="js/jenkins.js"></script>
   <link rel="stylesheet" type="text/css" href="css/popup.css">
 </head>	
 <body>
-  <div class="popup-header">
-    <div class="jira-status inline">Jira:</div>  
-    <div class="jira-status-indicator inline"></div>
-    <div class="open-settings-page inline showtooltip"><span class="glyphicon glyphicon-cog" id="open-settings-page"></span><span class="tooltiptext">Configure</span></div>
-  </div>  
-  
-  <div class='jira-filter-container' id='main-container'>
-    <div class="filter-container">
-    </div> 
-  </div>
-  <div id="sign-in-block" class="sign-in-block">
-    <div class="credentials">
-      <div class="input-group">
-        <label for='username'>Username:</label>
-        <input type="text" id='username' placeholder="Username">
-      </div>
-      <div class="input-group">
-        <label for='password'>Password:</label>
-        <input type="password" id='password' placeholder="Password">
-      </div>  
-      <button id="submit-jira-credentials">Sign In</button>
-    </div> 
 
-    <!-- <a href="#" id='sign-in-jira'>Sign in to Jira</a><br> -->
-    <span id="resp"></span>
+  <div class="open-settings-page inline showtooltip"><span class="glyphicon glyphicon-cog" id="open-settings-page"></span><span class="tooltiptext">Configure</span></div>
+
+  <div class='jira-filter-container'>
+
+    <div class="popup-header">
+      <div class="jira-status inline">Jira:</div>
+      <div class="jira-status-indicator inline"></div>
+    </div>
+
+    <div class="filter-container" id='main-container'>
+    </div>
+
+    <div id="sign-in-block" class="sign-in-block">
+      <div class="credentials">
+        <div class="input-group">
+          <label for='username'>Username:</label>
+          <input type="text" id='username' placeholder="Username">
+        </div>
+        <div class="input-group">
+          <label for='password'>Password:</label>
+          <input type="password" id='password' placeholder="Password">
+        </div>
+        <button id="submit-jira-credentials">Sign In</button>
+      </div>
+
+      <!-- <a href="#" id='sign-in-jira'>Sign in to Jira</a><br> -->
+      <span id="resp"></span>
+    </div>
+  </div>
+  <div class='jenkins-popup-container' id='jenkins-popup-container'>
+
+    <div class="popup-header">
+      <div class="jenkins-status inline">Jenkins:</div>
+      <div class="jenkins-status-indicator inline"></div>
+    </div>
+
+    <div class='jenkins-container'>
+    </div>
   </div>
 
   <div class="list-template">
@@ -58,6 +73,30 @@
         </table>
       </div>  
     </div>  
+  </div>
+  <div class="jenkins-popup-container-template">
+    <div class='list-header' data-toggle="collapse">
+        Tracked jobs: <span class="tracked-jobs-count"></span>
+    </div>
+    <div class="pannel-collapse collapse">
+      <div class="list-body">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>Job</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td name="job"></td>
+              <td name="status"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
   </div>
   <div class='popup-footer'>
       <a href="#" id="sign_out_jira">Sign Out</a>

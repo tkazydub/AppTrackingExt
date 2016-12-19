@@ -6,34 +6,50 @@
 	<script src="js/test.js"></script>
 	<script src="js/credentials.js"></script>
 	<script src="js/dashboard.js"></script>
+	<script src="js/jenkins.js"></script>
+	<script src="js/notifications.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/test.css">
 	<link rel="stylesheet" type="text/css" href="css/credentials.css">
 	<link rel="stylesheet" type="text/css" href="css/dashboard.css">
-</head>	
+	<link rel="stylesheet" type="text/css" href="css/jenkins.css">
+</head>
 <body>
 	<nav class="navbar navbar-default">
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li><a data-toggle="tab" href="#Dashboard" id="navigateToDashboard">Dashboard</a></li>
 	        <li><a data-toggle="tab" href="#Settings" id="navigateToSettings">Settings</a></li>
+			<li><a data-toggle="tab" href="#Notifications" id="navigateToNotifications">Notifications</a></li>
 	       </ul>
 	    </div>   
 	</nav>
 	<div class="tab-content">
 		<div id="Dashboard" class="tab-pane fade">
-			<div class="jira-block">
-				<div class="jira-list-container">
-					<div class="jira-list-header">
-						<h3>Jira lists:</h3>
-					</div>
-					<div class="list-container">
+			<div class="dashboard-block">
+				<div class="jenkins-block">
+					<div class="jenkins-jobs-container">
+						<div class="jenkins-jobs-container-header">
+							<h3>Jenkins Jobs:</h3>
+						</div>
+						<div class="jenkins-jobs-container-body">
+
+						</div>
 					</div>
 				</div>
-			</div>	
+				<div class="jira-block">
+					<div class="jira-list-container">
+						<div class="jira-list-header">
+							<h3>Jira lists:</h3>
+						</div>
+						<div class="list-container">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div id="Settings" class="tab-pane fade in active">
-			<div class='jira-block'>
+			<div class='jira-block-settings'>
 				<div class="jira-credentials-container">
 					<div class='jira-credentials-header'>
 						<h3>Credentials:</h3>
@@ -69,10 +85,88 @@
 					</div>
 				</div>		
 			</div>
+
+			<div class="jenkins-block-settings">
+				<div class="jenkins-settings-container">
+					<div class="jenkins-settings-container-header">
+						<h3>Settings:</h3>
+					</div>
+					<div class="jenkins-container">
+						<div class="jenkins-settings-container-body">
+							<div class="jenkins-settings-header">
+								<span id='jenkins-credentials-cancel' class="glyphicon glyphicon-remove showtooltip"><span class="tooltiptext">Cancel</span></span>
+								<span id='jenkins-credentials-edit' class="glyphicon glyphicon-cog showtooltip"><span class="tooltiptext">Edit</span></span>
+							</div>
+							<hr/>
+							<div class="jenkins-settings-body">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 		</div>
-	</div>	
+		<div id="Notifications" class="tab-pane fade">
+			<div class="jira-block-notifications">
+				<div class="jira-notifications-container">
+					<div class="jira-notifications-container-header">
+						<h3>Track Jira issues:</h3>
+					</div>
+					<div class="jira-notifications-container-body">
+						<div class="jira-notifications-no-rules-are-added">
+							No notifications setting were found :(
+							<button class="addNotificationBlock">Create Notifications</button>
+						</div>
+					</div>
+					<div class="jira-notifications-table">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div class="jenkins-jobs-table-template">
+		<div class="jenkins-jobs-table">
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th>Job Name</th>
+					<th>Status</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td name="jobName"></td>
+					<td name="jobStatus"></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
+	<div class="jenkins-settings-template">
+		<div class="jenkins-settings">
+			<div class="jenkins-settings-host">
+				<div class="input-group">
+					<label for="jenkins-host">Host:</label>
+					<input id="jenkins-host" type="text" placeholder="Enter Jenkins Host">
+				</div>
+			</div>
+			<div class="jenkins-settings-jobs">
+				<label for="jenkins-jobs">Tracked Jobs:</label>
+				<div id="jenkins-jobs">
+					<div class="input-group">
+						<input class="job-name" id="jenkins-job-0" type="text" placeholder="Enter Job Name">
+						<button class="remove-job">x</button>
+					</div>
+					<button class="add-job">+</button>
+				</div>
+				<div id="jenkins-setting-status"></div>
+				<button type="submit" class="submit-jenkins-settings" id="submit-jenkins-settings">Save</button>
+			</div>
+		</div>
+	</div>
 
 	<div class="filter-template">
 			<div class="filter-edit">
@@ -166,6 +260,31 @@
 				</ul>	
 			</div>	
 		</div>	
-	</div>	
+	</div>
+
+	<div class="jira-notifications-table-template">
+		<div class="jira-notifications-content">
+			<div class="notification-header">
+				<span class="glyphicon glyphicon-pencil edit-notification-icon showtooltip"><span class='tooltiptext'>Edit</span></span>
+				<span class="glyphicon glyphicon-remove cancel-edit-notification showtooltip"><span class='tooltiptext'>Cancel</span></span>
+				<div class="input-group">
+					<input value="Issue" name="key">
+					<input value="Status" name="status">
+				</div>
+			</div>
+			<div class="notification-body">
+				<div class="input-group">
+					<input placeholder="issue" name="key">
+					<input placeholder="status" name="status">
+					<button class="remove-notification">x</button>
+				</div>
+				<button class="add-notification" id="addNewNotification">+</button>
+			</div>
+			<div class="notification-footer">
+				<button class="save-notifications">Save</button>
+			</div>
+
+		</div>
+	</div>
 </body>	
 </html>

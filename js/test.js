@@ -72,11 +72,28 @@
   					insertCredentialsData();
   				})
   				.on('click', '#navigateToDashboard', initializeDashboard)
+				.on('click', '.add-job', function() {
+					var count = $(".jenkins-settings-body #jenkins-jobs .input-group").length;
+					var $input = $('.jenkins-settings-body #jenkins-jobs .input-group:last');
+					var inputId = parseInt($('.jenkins-settings-body #jenkins-jobs .input-group:last input')[0].id.match(/\d+/g)[0]) + 1;
+					var $newParam =
+						$input.clone()
+							.find('input').val("").attr('id','jenkins-job-' + inputId).end();
+					$input.after($newParam);
+					count++;
+					if (count > 1) $('.jenkins-settings-body #jenkins-jobs .remove-job').removeAttr('disabled');
+				})
+				.on("click",'.remove-job',function(){
+					var count = $(".jenkins-settings-body #jenkins-jobs .input-group").length;
+					$(this).closest('.input-group').remove();
+					count--;
+					if (count < 2) $('.jenkins-settings-body #jenkins-jobs .remove-job').attr('disabled','disabled');
+				})
   		});
 }) (jQuery);
 
 function getFilterData(filter_id) {
-	var filter_name = $('#jira-filter-' + filter_id + ' .filter-header input').val()
+	var filter_name = $('#jira-filter-' + filter_id + ' .filter-header input').val();
 	var params = [];
 	$("#jira-filter-"+ filter_id + " .filter-params .input-group").each(function(){
 		var value = $(this).find('input[name="value"]').val();

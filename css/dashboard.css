@@ -2,12 +2,29 @@
 	display: none;
 }
 
-.jira-list-container{
+.jira-block {
+	width: calc(100% - 430px);
+	float: right;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	align-items: flex-start;
+}
+
+.dashboard-block{
 	display: inline-block;
 	width: 100%;
 	padding:10px;
 	margin-left: 10px;
 }
+
+/*.jira-list-container{*/
+	/*display: inline-block;*/
+	/*width: 100%;*/
+	/*padding:10px;*/
+	/*margin-left: 10px;*/
+/*}*/
 .jira-list-header {
 	
 }

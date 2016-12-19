@@ -13,7 +13,7 @@ body {
 	margin-left: 10px;
 	/*min-width: 340px;
 	max-width: 1360px;*/
-	width: calc(100% - 420px);
+	width: calc(100% - 435px);
 }
 
 .filter-template {
@@ -213,4 +213,83 @@ div.search-query-text {
 
 .showtooltip:hover .tooltiptext {
     visibility: visible;
+}
+.jira-notifications-table-template {
+	display: none;
+}
+
+.jira-notifications-no-rules-are-added {
+	display: none;
+}
+.jira-notifications-content {
+	width: 450px;
+	padding: 10px;
+	/*height: auto;*/
+	margin-top: 0px;
+	margin-bottom: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	box-shadow: 5px 5px 3px #888888;
+	background-color: white;
+}
+
+
+.notification-header span {
+	float: right;
+	display:inline;
+}
+
+.notification-header{
+	margin-top: 5px;
+}
+
+.notification-body {
+	margin-top: 10px;
+}
+
+.notification-header input{
+	text-align: center;
+	border: 0;
+	outline: 0;
+	width: 200px;
+	background: transparent;
+	margin-top: 25px;
+	margin-right: 5px;
+	font-weight: bold;
+	pointer-events: none;
+}
+
+.notification-body input{
+	text-align: center;
+	border: 0;
+	outline: 0;
+	width: 200px;
+	background: transparent;
+	border-bottom: 1px solid black;
+	margin-right: 5px;
+}
+
+button.remove-notification{
+	border:0;
+	background: transparent;
+	height: auto;
+	width: 10px;
+	text-align: center;
+	padding: 0;
+	margin-left: 5px;
+}
+
+button.add-notification {
+	/*float: right;*/
+	margin-left: 415px;
+	border:0;
+	background: transparent;
+	height: 10px;
+	width: 10px;
+	text-align: center;
+	padding: 0px;
+	font-size: 17px;
+}
+button.save-notifications {
+	margin-top: 30px;
 }

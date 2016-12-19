@@ -1,5 +1,5 @@
 body {
-	background-color: F7F7F7;
+	background-color: #F7F7F7;
 }
 .sign-in-block {
 	display: none;
@@ -44,14 +44,29 @@ body {
     text-align: center;
     -moz-border-radius:5px;
     -webkit-border-radius: 5px;
-}    
+}
+.jenkins-status-indicator {
+    background-color: #E5E4E2;
+    height: 10px;
+    width: 10px;
+    text-align: center;
+    -moz-border-radius:5px;
+    -webkit-border-radius: 5px;
+}
 .inline {
     display: inline-block;
 }
 .list-template {
 	display: none;
 }
-.jira-filter-container {
+.jenkins-popup-container-template {
+	display: none;
+}
+.jenkins-popup-container .list-header{
+	font-size: 15px;
+	font-weight: bold;
+}
+.jira-filter-container, .jenkins-popup-container {
 	width: 410px;
 	padding: 5px;
 }

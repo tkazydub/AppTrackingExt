@@ -172,13 +172,13 @@ function searchRequestJiraPromise(data) {
 		xhr.open("GET", $host + "/rest/api/2/search?jql=" + data['search_url'], true);
 		xhr.onload = function() {
 			if (xhr.status==200) {
-				data["response"] = JSON.parse(xhr.response)
+				data["response"] = JSON.parse(xhr.response);
 				resolve(data);
 			}
 			else {
 				reject(xhr.status);
 			}
-		}
+		};
 		xhr.send();
 	});	
 }
@@ -204,7 +204,7 @@ function displayFilter(data){
 	newList.find('span.display-issues-found').text(issues.length);
 	if (issues.length>0){
 		for (var i=0; i<issues.length; i++){
-			newLine = newList.find('tbody tr:last').clone()
+			var newLine = newList.find('tbody tr:last').clone()
 				.find('td[name="key"]').html('<a href="' + $host + '/browse/' + issues[i]["key"] + '">'+ issues[i]["key"] + '</a>').end()
 				.find('td[name="summary"]').text(issues[i]["fields"]["summary"]).end()
 				.find('td[name="status"]').text(issues[i]["fields"]["status"]["name"]).end();
@@ -213,18 +213,79 @@ function displayFilter(data){
 		newList.find('tbody tr:first').remove();
 	}
 	else {
-		newList.find('table').remove()
+		newList.find('table').remove();
 		newList.find('div.collapse .list-body').append('<div class="no-results-text">No issues found</div>');
 	}	
 	$(".filter-container").append(newList);
 }
 
 
+function displayJenkinsJobsPopUp(){
+		getJenkinsDataFromLocalStoragePromise().then(
+			function(data){
+				if (data.jobs.length > 0) {
+					return data
+				}
+				else {
+					return null;
+				}
+			}
+		).then(function(data){
+				getJenkinsJobsDataPromise(data.host).then(
+					function(response){
+						var jobsStatus = [];
+						for (var j=0; j < data.jobs.length; j++){
+							var job_status = $.grep(response, function(e){return e.name == data.jobs[j]});
+							if (job_status.length > 0) {
+								jobsStatus.push(job_status[0]);
+							}
+						}
+						changeJenkinsStatusIndicator("#5EF33A");
+						return jobsStatus;
+					},
+					function (error){changeJenkinsStatusIndicator("#E5E4E2")}
+
+				).then(
+					function(data) {
+						createJenkinsPopUp(data);
+					}
+				);
+			}
+		);
+}
+
+
+function createJenkinsPopUp(data){
+	var jobs = data;
+	var jenkinsList = $('.jenkins-popup-container-template').clone().attr('class','list');
+	jenkinsList.find('div.list-header').attr('href','#jenkins-collapse-0');
+	jenkinsList.find('div.collapse').attr('id','jenkins-collapse-0');
+	jenkinsList.find('span.tracked-jobs-count').text(jobs.length);
+	if (jobs.length>0) {
+		for (var i=0; i<jobs.length; i++){
+			var newLine = jenkinsList.find('tbody tr:last').clone()
+				.find('td[name="job"]').html('<a href="' + jobs[i]["url"]+ '">' + jobs[i]["name"] + '</a>').end()
+				.find('td[name="status"]').text(data[i]["color"]).end();
+			jenkinsList.find('tbody tr:last').after(newLine);
+		}
+		jenkinsList.find('tbody tr:first').remove();
+	}
+	else {
+		jenkinsList.find('table').remove();
+		jenkinsList.find('div.collapse .list-body').append('<div class="no-results-text">No Jobs are tracked at the moment</div>');
+	}
+	$('#jenkins-popup-container .jenkins-container').append(jenkinsList);
+}
+
+function changeJenkinsStatusIndicator(color){
+	$(".jenkins-status-indicator").css('backgroundColor',color);
+}
 
 
 (function($) {
   		$(document).ready(function(){
   			checkSignInStatus();
+			displayJenkinsJobsPopUp();
   			$(document)
   				.on('click', '#open-settings-page', openSettings)
   				.on('click', '#sign-in-jira', signInToJira)
