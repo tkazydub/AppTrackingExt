@@ -36,7 +36,9 @@ function getNotificationsData() {
             })
         }
     });
-    return notifications;
+    var updateTime = $('.jira-notifications-container .notification-body .update-interval input ').val();
+    var results = {"notifications": notifications, "updateTime": updateTime};
+    return results;
 }
 
 function makeNotificationsDisplayView(){
@@ -51,7 +53,7 @@ function makeNotificationsDisplayView(){
 
 function makeNotificationsEditView(){
     $(".jira-notifications-container")
-        .find('.notification-body .input-group input').prop('disabled', false).end()
+        .find('.notification-body input').prop('disabled', false).end()
         .find('.notification-body .remove-notification').show().end()
         .find('.notification-body .add-notification').show().end()
         .find('.save-notifications').show().end()
@@ -68,14 +70,14 @@ function buildNotificationsBlock(){
                 .find('.remove-notification').attr('disabled','disabled').end()
                 .find('.edit-notification-icon').hide().end()
                 .find('.cancel-edit-notification').show().end();
-            var length = data.length;
+            var length = data["notifications"].length;
             if (length > 1) {
                 template.find('.remove-notification').removeAttr('disabled');
             }
             while (length > 0) {
                 template.find('.notification-body  .input-group:last')
-                     .find('input[name="key"]').val(data[data.length-length]["issue"]).end()
-                     .find('input[name="status"]').val(data[data.length-length]["status"]).end();
+                     .find('input[name="key"]').val(data["notifications"][data["notifications"].length-length]["issue"]).end()
+                     .find('input[name="status"]').val(data["notifications"][data["notifications"].length-length]["status"]).end();
                 length--;
                 if (length > 0) {
                     var input = template.find('.notification-body  .input-group:last');
@@ -87,6 +89,7 @@ function buildNotificationsBlock(){
                 }
 
             }
+            template.find('.update-interval input').val(data["updateTime"]);
             template.appendTo('.jira-notifications-table');
             makeNotificationsDisplayView();
         },
@@ -109,7 +112,7 @@ function saveNotificationsDataToLocalStorage() {
 
 function displayNotificationsList(){
     getNotificationsDataFromLocalStoragePromise().then(function(data){
-       if (data.length > 0){
+       if (data['notifications'].length > 0){
            buildNotificationsBlock();
        }
        else {
